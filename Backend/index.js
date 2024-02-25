@@ -38,10 +38,10 @@ cloudinary.cloudinaryConnect();
 
 //api route mount krna h
 // const jobRouter = require("./routes/jobRoutes.js");
-// app.use("/api/v1/user", jobRouter);
+// app.use("/api/v1/job", jobRouter);
 
-// const userRouter = require("./routes/userRoutes.js");
-// app.use("/api/v1/job", userRouter);
+const userRouter = require("./routes/userRoutes.js");
+app.use("/api/v1/user", userRouter);
 
 // const applicationRouter = require("./applicationRoutes.js");
 // app.use("/api/v1/application", applicationRouter);
