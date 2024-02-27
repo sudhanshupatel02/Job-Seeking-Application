@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken")
 exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
 
   // Assuming req is the request object
-  console.log(req)
 const cookieHeader = req.headers.cookie;
 
 // Now parse the cookie header to extract the specific cookie value
