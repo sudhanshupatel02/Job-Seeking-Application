@@ -21,3 +21,24 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
   });
   sendToken(user, 201, res, "User Registered!");
 });
+
+exports.login = catchAsyncErrors(async (req, res, next) => {
+  const { email, password, role } = req.body;
+  if (!email || !password || !role) {
+    return next(new ErrorHandler("Please provide email ,password and role."));
+  }
+  const user = await User.findOne({ email }).select("+password");
+  if (!user) {
+    return next(new ErrorHandler("Invalid Email Or Password.", 400));
+  }
+  const isPasswordMatched = await user.comparePassword(password);
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Invalid Email Or Password.", 400));
+  }
+  if (user.role !== role) {
+    return next(
+      new ErrorHandler(`User with provided email and ${role} not found!`, 404)
+    );
+  }
+  sendToken(user, 201, res, "User Logged In!");
+});
