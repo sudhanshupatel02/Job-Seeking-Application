@@ -1,5 +1,5 @@
 const { catchAsyncErrors } = require("../middlewares/catchAsyncError.js");
-const User = require("../models/userSchema.js");  //{User} lika tha thabhi run nhi ho raha tha postman per
+const User = require("../models/userSchema.js");  //{User} ye lika tha thabhi run nhi ho raha tha postman per [models Schema sing raha hai]  
 const ErrorHandler = require("../middlewares/error.js");
 const {sendToken} = require("../utils/jwtToken.js");
 
@@ -53,3 +53,11 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
       message: "Logged Out Successfully.",
     });
 });
+
+// exports.getUser = catchAsyncErrors((req, res, next) => {
+//   const user = req.user;
+//   res.status(200).json({
+//     success: true,
+//     user,
+//   });
+// });

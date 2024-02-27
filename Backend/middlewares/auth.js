@@ -4,7 +4,20 @@ const ErrorHandler = require("./error.js")
 const jwt = require("jsonwebtoken")
 
 exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
-  const { token } = req.cookies;
+
+  // Assuming req is the request object
+  console.log(req)
+const cookieHeader = req.headers.cookie;
+
+// Now parse the cookie header to extract the specific cookie value
+const parseCookie = cookieHeader.split(';').reduce((cookies, cookie) => {
+  const [name, value] = cookie.trim().split('=');
+  cookies[name] = value;
+  return cookies;
+}, {});
+
+// Now you can access the specific cookie value by its name
+const token = parseCookie.token;
   if (!token) {
     return next(new ErrorHandler("User Not Authorized", 401));
   }

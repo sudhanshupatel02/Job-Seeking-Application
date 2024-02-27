@@ -14,5 +14,4 @@ exports.sendToken = (user, statusCode, res, message) => {
     token,
   });
 };
-
 // module.exports = sendToken;
