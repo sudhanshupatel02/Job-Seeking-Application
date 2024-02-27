@@ -1,7 +1,7 @@
 const { catchAsyncErrors } = require("../middlewares/catchAsyncError.js");
 const User = require("../models/userSchema.js");  //{User} lika tha thabhi run nhi ho raha tha postman per
 const ErrorHandler = require("../middlewares/error.js");
-// const { sendToken } = require("../utils/jwtToken.js");
+const {sendToken} = require("../utils/jwtToken.js");
 
 exports.register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, phone, password, role } = req.body;
@@ -19,10 +19,5 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
     password,
     role,
   });
-  res.status(200).json({
-    success: true,
-    message: "user register",
-    user,
-  })
-//   sendToken(user, 201, res, "User Registered!");
+  sendToken(user, 201, res, "User Registered!");
 });
