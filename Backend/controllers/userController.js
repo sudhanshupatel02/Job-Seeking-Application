@@ -42,3 +42,14 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
   }
   sendToken(user, 201, res, "User Logged In!");
 });
+
+exports.logout = catchAsyncErrors(async (req, res, next) => {
+  res.status(201).cookie("token", "", {        //"" or null kuchh bhi likha sakte h
+      httpOnly: true,
+      expires: new Date(Date.now()),         //jwtToken me jo value hai wahi valu deni h value same honi chahiye
+    })
+    .json({
+      success: true,
+      message: "Logged Out Successfully.",
+    });
+});
