@@ -1,5 +1,5 @@
 const { catchAsyncErrors } = require("../middlewares/catchAsyncError.js");
-const { User } = require("../models/userSchema.js");
+const User = require("../models/userSchema.js");  //{User} lika tha thabhi run nhi ho raha tha postman per
 const ErrorHandler = require("../middlewares/error.js");
 // const { sendToken } = require("../utils/jwtToken.js");
 

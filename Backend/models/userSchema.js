@@ -58,4 +58,6 @@ userSchema.methods.getJWTToken = function () {
   });
 };
 
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("users", userSchema);
+module.exports = User;
+// module.exports = mongoose.model("User", userSchema);// model me yaha likhane se nhi work karega is liye uper wala likhe
