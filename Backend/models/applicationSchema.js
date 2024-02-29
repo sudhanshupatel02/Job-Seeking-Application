@@ -25,8 +25,8 @@ const applicationSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your Address!"],
   },
-  resume: {
-    public_id: {
+  resume: {  
+    public_id: {  //cloudinar se aaye ga public_id
       type: String, 
       required: true,
     },
@@ -35,7 +35,7 @@ const applicationSchema = new mongoose.Schema({
       required: true,
     },
   },
-  applicantID: {
+  applicantID: {  // jo aplai kar rah hai uski applicantID
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
