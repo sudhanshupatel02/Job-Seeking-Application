@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const { isAuthenticated } = require("../middlewares/auth.js");
 
 // import
-const { getAllJobs } = require("../controllers/jobController.js");
+const { getAllJobs , postJob } = require("../controllers/jobController.js");
 
 // const {
 //   deleteJob,
@@ -13,11 +14,9 @@ const { getAllJobs } = require("../controllers/jobController.js");
 //   updateJob,
 // } = require("../controllers/jobController.js");
 
-// const { isAuthenticated } = require("../middlewares/auth.js");
-
 // api routes
 router.get("/getall", getAllJobs);
-// router.post("/post", isAuthenticated, postJob);
+router.post("/post", isAuthenticated, postJob);
 // router.get("/getmyjobs", isAuthenticated, getMyJobs);
 // router.put("/update/:id", isAuthenticated, updateJob);
 // router.delete("/delete/:id", isAuthenticated, deleteJob);
