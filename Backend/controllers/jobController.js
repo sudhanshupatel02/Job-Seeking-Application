@@ -98,4 +98,37 @@ exports.getAllJobs = catchAsyncErrors(async (req, res, next) => {
     });
   });
   
-  
+  exports.deleteJob = catchAsyncErrors(async (req, res, next) => {
+    const { role } = req.user;
+    if (role === "Job Seeker") {
+      return next(
+        new ErrorHandler("Job Seeker not allowed to access this resource.", 400)
+      );
+    }
+    const { id } = req.params;
+    const job = await Job.findById(id);
+    if (!job) {
+      return next(new ErrorHandler("OOPS! Job not found.", 404));
+    }
+    await job.deleteOne();
+    res.status(200).json({
+      success: true,
+      message: "Job Deleted!",
+    });
+  });
+
+  exports.getSingleJob = catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      const job = await Job.findById(id);
+      if (!job) {
+        return next(new ErrorHandler("Job not found.", 404));
+      }
+      res.status(200).json({
+        success: true,
+        job,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(`Invalid ID / CastError`, 404));
+    }
+  });
