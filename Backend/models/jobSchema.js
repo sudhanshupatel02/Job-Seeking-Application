@@ -53,7 +53,7 @@ const jobSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  postedBy: {
+  postedBy: {  //postedBy jab kaun post kar rha hai is liye {id}likte h
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
