@@ -43,8 +43,8 @@ app.use("/api/v1/job", jobRouter);
 const userRouter = require("./routes/userRoutes.js");
 app.use("/api/v1/user", userRouter);
 
-// const applicationRouter = require("./applicationRoutes.js");
-// app.use("/api/v1/application", applicationRouter);
+const applicationRouter = require("./routes/applicationRoutes.js");
+app.use("/api/v1/application", applicationRouter);
 
 const {errorMiddleware} = require("./middlewares/error.js");
 app.use(errorMiddleware);
